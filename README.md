@@ -1,64 +1,108 @@
-# Multi-Cloud Network Foundations (Azure + AWS)
+# Multi-Cloud Network Architecture (AWS + Azure) 🌐
 
 ## Overview
-This project demonstrates foundational cloud networking concepts by building equivalent architectures in both Microsoft Azure and AWS.
 
-The goal is to understand how core networking components translate across cloud providers.
+This project explores how foundational cloud networking concepts translate across AWS and Microsoft Azure by designing equivalent network architectures in both environments.
 
----
-
-##  Azure Implementation
-- Created Virtual Network (VNet)
-- Configured subnets (subnet-a, subnet-b)
-- Associated Network Security Group (NSG)
-- Managed IP addressing and segmentation
+The goal is to understand not just how to build networks, but how design decisions impact security, scalability, and connectivity across cloud platforms.
 
 ---
 
-##  AWS Implementation
-- Created VPC with CIDR block (10.0.0.0/16)
-- Configured public subnet (10.0.10.0/24)
-- Attached Internet Gateway
-- Updated route tables for internet access
-- Launched EC2 instance inside subnet
-- Configured Security Group (SSH + HTTP)
-- Installed Apache web server
-- Validated connectivity via public IP
+## Architecture
+
+**Azure:**
+VNet → Subnets → NSG → Public Access
+
+**AWS:**
+VPC → Subnet → Route Table → Internet Gateway → EC2
 
 ---
 
-##  Architecture Comparison
+## Key Components
 
-| Azure | AWS |
-|------|-----|
-| VNet | VPC |
-| Subnet | Subnet |
-| NSG | Security Group |
-| Routing | Route Tables |
-| Public Access | Internet Gateway |
+### Azure
+- Virtual Network (VNet) for isolated networking
+- Subnet segmentation for workload separation
+- Network Security Groups (NSGs) for traffic control
 
----
-
-##  Key Learnings
-- Network design is critical for security and scalability
-- Proper CIDR planning prevents IP conflicts
-- Security groups should follow least privilege principle
-- Routing determines how traffic flows in/out of cloud environments
+### AWS
+- VPC with CIDR block (10.0.0.0/16)
+- Public subnet (10.0.10.0/24)
+- Internet Gateway for external connectivity
+- Route tables to control traffic flow
+- Security Groups for instance-level access control
+- EC2 instance deployed and validated via HTTP
 
 ---
 
-## Relevance to AWS SAA
-This project reinforces:
-- VPC design best practices
-- Public vs Private subnet concepts
-- Internet Gateway and routing
-- EC2 networking
-- Security group configurations
+## Architecture Mapping
+
+| Concept            | Azure             | AWS               |
+|------------------|------------------|------------------|
+| Network          | VNet             | VPC              |
+| Subnet           | Subnet           | Subnet           |
+| Security         | NSG              | Security Group   |
+| Routing          | System/User Routes | Route Tables    |
+| Internet Access  | Public IP / Gateway | Internet Gateway |
 
 ---
 
-##  Next Steps
-- Add private subnet + NAT Gateway
-- Deploy multi-tier architecture
-- Add Load Balancer
-- Automate infrastructure with Terraform
+## Security Design
+
+- Controlled inbound traffic using NSG / Security Groups
+- Limited exposure to only required ports (SSH, HTTP)
+- Segmentation using subnets
+- Applied principle of least privilege
+
+---
+
+## Business Impact
+
+Understanding multi-cloud networking enables organizations to:
+
+- **Maintain flexibility** across cloud providers (avoid vendor lock-in)
+- **Standardize architecture patterns** across platforms
+- **Improve security posture** through consistent network design principles
+- **Accelerate cloud adoption** by reducing learning curve across environments
+- **Design resilient systems** that can scale across regions and providers
+
+---
+
+## Trade-offs & Design Decisions
+
+- Used **public subnet for simplicity**:
+  - Easier validation and testing
+  - Not production-ready (would require private subnets + NAT)
+
+- Separate security controls (NSG vs Security Groups):
+  - Azure provides subnet-level control
+  - AWS focuses more on instance-level control
+
+- CIDR planning:
+  - Ensures scalability and prevents IP conflicts in larger environments
+
+---
+
+## Key Learnings
+
+- Core networking concepts remain consistent across cloud providers
+- Security and routing are critical to system reliability
+- Network design directly impacts scalability and cost
+- Multi-cloud knowledge improves architectural flexibility
+
+---
+
+## Next Steps
+
+- Implement private subnets + NAT Gateway
+- Add Load Balancer for high availability
+- Build multi-tier architecture (web + app + DB)
+- Automate infrastructure using Terraform
+- Compare cost and performance between AWS and Azure
+
+---
+
+## Author
+
+Jesus Velasquez  
+Cloud Learner | Focused on Cloud Architecture, Networking, and System Design
